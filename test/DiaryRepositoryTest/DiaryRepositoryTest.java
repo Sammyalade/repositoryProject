@@ -1,9 +1,11 @@
 package DiaryRepositoryTest;
 
+
 import datas.models.Diary;
 import datas.repositories.DiaryRepository;
 import datas.repositories.DiaryRepositoryImpl;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DiaryRepositoryTest {
@@ -16,12 +18,12 @@ public class DiaryRepositoryTest {
         assertEquals(1, repository.count());
     }
 
-//    @Test
-//    public void saveDiary_findDiary_diaryIsReturnedTest(){
-//        DiaryRepository repository = new DiaryRepositoryImpl();
-//        Diary diary = new Diary();
-//        repository.save(diary);
-//        assertEquals(diary, repository.findById("username"));
-//    }
+    @Test
+    public void saveDiary_findDiary_diaryIsReturnedTest(){
+        DiaryRepository repository = new DiaryRepositoryImpl();
+        Diary diary = new Diary();
+        repository.save(diary);
+        assertEquals(diary, repository.findById("username"));
+    }
 
 }
