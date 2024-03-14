@@ -1,4 +1,4 @@
 package DiaryRepositoryTest;
 
-public class EntryRepositoryTest {   
+public class EntryRepositoryTest {
 }
