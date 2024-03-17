@@ -29,7 +29,7 @@ public class DiaryServiceImpl implements DiaryService{
     }
 
     @Override
-    public void createEntry(LoginRequest loginRequest, ) {
+    public void createEntry(LoginRequest loginRequest) {
 
     }
 
