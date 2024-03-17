@@ -23,7 +23,7 @@ public class EntryRepositoryImpl implements EntryRepository{
     }
 
     @Override
-    public Entry findById(int id) {
+    public Entry findById(long id) {
         for(Entry entry: entries) {
             if (entry.getId() == id) return entry;
         }
