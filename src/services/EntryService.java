@@ -1,17 +1,19 @@
 package services;
 
 import datas.models.Entry;
-import services.dtos.EntryAccessRequest;
 import services.dtos.EntryCreationRequest;
 
-import javax.xml.crypto.Data;
+import java.util.List;
 
 public interface EntryService {
-    
-    Entry create(EntryCreationRequest entryCreationRequest);
-    
-    void viewEntry(EntryAccessRequest entryAccessRequest);
-        
 
+    Entry create(EntryCreationRequest newEntry);
 
+    List<Entry> getAllEntries();
+
+    Entry checkEntryById(int id);
+
+    void delete(int id);
+
+    void delete(Entry entry);
 }
