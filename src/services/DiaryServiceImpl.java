@@ -28,11 +28,6 @@ public class DiaryServiceImpl implements DiaryService{
         return checkPassword(loginRequest, checkUsername(loginRequest));
     }
 
-    @Override
-    public void createEntry(LoginRequest loginRequest) {
-
-    }
-
 
     private Diary createDiary(RegisterRequest registerRequest) {
         Diary newDiary = new Diary(registerRequest.getUsername(),  registerRequest.getPassword());
