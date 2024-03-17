@@ -4,11 +4,11 @@ import java.time.LocalDate;
 
 public class Entry {
 
-    private final int id;
+    private final long id;
     private String title;
     private String body;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -34,7 +34,7 @@ public class Entry {
 
     private final LocalDate dateCreated = LocalDate.now();
 
-    public Entry(int id, String title, String body) {
+    public Entry(long id, String title, String body) {
         this.id = id;
         this.title = title;
         this.body = body;
