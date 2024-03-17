@@ -18,7 +18,5 @@ public interface EntryService {
 
     void delete(Entry entry);
 
-    long generateId();
-
     Entry update(EntryUpdateRequest entryUpdateRequest);
 }
