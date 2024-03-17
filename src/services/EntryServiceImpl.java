@@ -9,6 +9,7 @@ import java.util.List;
 
 public class EntryServiceImpl implements EntryService {
     private final EntryRepository entryRepository;
+    private long countOfEntry;
 
     public EntryServiceImpl(EntryRepository entryRepository) {
         this.entryRepository = entryRepository;
@@ -16,6 +17,8 @@ public class EntryServiceImpl implements EntryService {
 
     @Override
     public Entry create(EntryCreationRequest entry) {
+        ++countOfEntry;
+        entry.setId(countOfEntry);
         return entryRepository.save(new Entry(entry.getId(), entry.getTitle(), entry.getBody()));
     }
 
@@ -37,5 +40,10 @@ public class EntryServiceImpl implements EntryService {
     @Override
     public void delete(Entry entry) {
         entryRepository.delete(entry);
+    }
+
+    @Override
+    public long generateId() {
+        return countOfEntry;
     }
 }
