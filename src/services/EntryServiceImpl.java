@@ -2,6 +2,7 @@ package services;
 
 import datas.models.Entry;
 import datas.repositories.EntryRepository;
+import services.dtos.EntryCreationRequest;
 
 
 import java.util.List;
@@ -14,8 +15,8 @@ public class EntryServiceImpl implements EntryService {
     }
 
     @Override
-    public Entry create(Entry entry) {
-        return entryRepository.save(entry);
+    public Entry create(EntryCreationRequest entry) {
+        return entryRepository.save(new Entry(entry.getId(), entry.getTitle(), entry.getBody()));
     }
 
     @Override
