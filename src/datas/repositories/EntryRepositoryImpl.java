@@ -13,7 +13,7 @@ public class EntryRepositoryImpl implements EntryRepository{
     public Entry save(Entry entry) {
         entries.add(entry);
         count++;
-        return null;
+        return entry;
     }
 
     @Override
