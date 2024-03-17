@@ -7,13 +7,17 @@ public class Diary {
 
     private String username;
     private String password;
-    public boolean isLocked = true;
+    public boolean isLocked;
 
     public Diary(){}
 
     public Diary(String username, String password) {
         this.username = username;
         this.password = password;
+    }
+
+    public boolean equals(Object object){
+        return object instanceof Diary;
     }
 
     public String getUsername() {
@@ -39,10 +43,4 @@ public class Diary {
     public void setLocked(boolean locked) {
         isLocked = locked;
     }
-
-    public List<Entry> getEntries() {
-        return entries;
-    }
-
-    private final List<Entry> entries = new ArrayList<>();
 }
