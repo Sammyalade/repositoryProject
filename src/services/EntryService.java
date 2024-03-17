@@ -2,6 +2,7 @@ package services;
 
 import datas.models.Entry;
 import services.dtos.EntryCreationRequest;
+import services.dtos.EntryUpdateRequest;
 
 import java.util.List;
 
@@ -18,4 +19,6 @@ public interface EntryService {
     void delete(Entry entry);
 
     long generateId();
+
+    Entry update(EntryUpdateRequest entryUpdateRequest);
 }
