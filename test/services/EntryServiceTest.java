@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class EntryServiceTest {
 
@@ -83,5 +84,22 @@ public class EntryServiceTest {
     }
 
     @Test
-    public void
+    public void createEntry_deleteEntryById_entryIsDeletedTest(){
+        EntryCreationRequest entryCreationRequest = new EntryCreationRequest();
+        entryCreationRequest.setTitle("First Entry");
+        entryCreationRequest.setBody("This is my first entry");
+        Entry entry = entryService.create(entryCreationRequest);
+        entryService.delete(1);
+        assertNull(entryService.checkEntryById(1));
+    }
+
+    @Test
+    public void createEntry_deleteEntry_entryIsDeletedTest(){
+        EntryCreationRequest entryCreationRequest = new EntryCreationRequest();
+        entryCreationRequest.setTitle("First Entry");
+        entryCreationRequest.setBody("This is my first entry");
+        Entry entry = entryService.create(entryCreationRequest);
+        entryService.delete(entry);
+        assertNull(entryService.checkEntryById(1));
+    }
 }
