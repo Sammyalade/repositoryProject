@@ -43,8 +43,7 @@ public class EntryServiceImpl implements EntryService {
         entryRepository.delete(entry);
     }
 
-    @Override
-    public long generateId() {
+    private long generateId() {
         return countOfEntry;
     }
 
