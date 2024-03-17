@@ -39,4 +39,8 @@ public class Entry {
         this.title = title;
         this.body = body;
     }
+
+    public boolean equals(Object object){
+        return object instanceof Entry;
+    }
 }
