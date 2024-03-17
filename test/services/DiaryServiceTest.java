@@ -3,6 +3,8 @@ package services;
 import datas.models.Diary;
 import datas.repositories.DiaryRepository;
 import datas.repositories.DiaryRepositoryImpl;
+import datas.repositories.EntryRepository;
+import datas.repositories.EntryRepositoryImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import services.dtos.LoginRequest;
@@ -21,7 +23,9 @@ public class DiaryServiceTest {
     @BeforeEach
     public void initializeDiaryService() {
         DiaryRepository diaryRepository = new DiaryRepositoryImpl();
-        diaryService = new DiaryServiceImpl(diaryRepository);
+        EntryRepository entryRepository = new EntryRepositoryImpl();
+        EntryService entryService = new EntryServiceImpl(entryRepository);
+        diaryService = new DiaryServiceImpl(diaryRepository, entryService);
     }
 
     @Test
@@ -94,4 +98,5 @@ public class DiaryServiceTest {
         registerRequest.setPassword("");
         assertThrows(EmptyStringException.class, ()->diaryService.register(registerRequest));
     }
+
 }
