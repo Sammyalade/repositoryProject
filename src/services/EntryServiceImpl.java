@@ -3,6 +3,7 @@ package services;
 import datas.models.Entry;
 import datas.repositories.EntryRepository;
 import services.dtos.EntryCreationRequest;
+import services.dtos.EntryUpdateRequest;
 
 
 import java.util.List;
@@ -45,5 +46,11 @@ public class EntryServiceImpl implements EntryService {
     @Override
     public long generateId() {
         return countOfEntry;
+    }
+
+    @Override
+    public Entry update(EntryUpdateRequest entryUpdateRequest) {
+        entryRepository.delete(entryRepository.findById(entryUpdateRequest.getId()));
+        return entryRepository.save(new Entry(entryUpdateRequest.getId(), entryUpdateRequest.getTitle(), entryUpdateRequest.getBody()));
     }
 }
