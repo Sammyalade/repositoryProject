@@ -12,7 +12,10 @@ import services.exceptions.UsernameTakenException;
 public class DiaryServiceImpl implements DiaryService{
     private final DiaryRepository repository;
 
-    public DiaryServiceImpl(DiaryRepository diaryRepository){
+    private final EntryService entryService;
+
+    public DiaryServiceImpl(DiaryRepository diaryRepository, EntryService entryService){
+        this.entryService = entryService;
         repository = diaryRepository;
     }
 
