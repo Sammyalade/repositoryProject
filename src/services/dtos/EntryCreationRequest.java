@@ -2,6 +2,7 @@ package services.dtos;
 
 public class EntryCreationRequest {
 
+    private long id;
 
     public String getTitle() {
         return null;
@@ -17,7 +18,11 @@ public class EntryCreationRequest {
     public void setBody(String thisIsMyFirstEntry) {
     }
 
-    public int getId() {
-        return 0;
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long countOfEntry) {
+        id = countOfEntry;
     }
 }
