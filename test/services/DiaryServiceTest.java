@@ -94,13 +94,4 @@ public class DiaryServiceTest {
         registerRequest.setPassword("");
         assertThrows(EmptyStringException.class, ()->diaryService.register(registerRequest));
     }
-
-    @Test
-    public void createEntryInADiary_entrySizeIsOneTest(){
-        RegisterRequest registerRequest = new RegisterRequest();
-        registerRequest.setUsername("username");
-        registerRequest.setPassword("password");
-        diaryService.register(registerRequest);
-        diaryService.createEntry()
-    }
 }
