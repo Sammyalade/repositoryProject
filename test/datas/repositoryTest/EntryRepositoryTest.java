@@ -94,4 +94,10 @@ public class EntryRepositoryTest {
         entryRepository.delete(entry);
         assertNull(entryRepository.findById(1));
     }
+
+    @Test
+    public void createEntry_returnsEntryTest(){
+        Entry entry = new Entry(2, "Story Of My Life", "123");
+        assertEquals(entry, entryRepository.save(entry));
+    }
 }
