@@ -40,7 +40,11 @@ public class Diary {
         return isLocked;
     }
 
-    public void setLocked(boolean locked) {
-        isLocked = locked;
+    public void unlock() {
+        isLocked = false;
+    }
+
+    public void lock(){
+        isLocked = true;
     }
 }
