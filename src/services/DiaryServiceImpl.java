@@ -27,8 +27,8 @@ public class DiaryServiceImpl implements DiaryService{
     }
 
     @Override
-    public boolean login(LoginRequest loginRequest) {
-        return checkPassword(loginRequest, checkUsername(loginRequest));
+    public void login(LoginRequest loginRequest) {
+        checkPassword(loginRequest, checkUsername(loginRequest));
     }
 
 
@@ -52,8 +52,8 @@ public class DiaryServiceImpl implements DiaryService{
         return diaryToFind;
     }
 
-    private boolean checkPassword(LoginRequest loginRequest, Diary diaryToFind) {
-        if(diaryToFind.getPassword().equals(loginRequest.getPassword())) return true;
-        throw new IncorrectPasswordException("Password is Incorrect");
+    private void checkPassword(LoginRequest loginRequest, Diary diaryToFind) {
+        if(diaryToFind.getPassword().equals(loginRequest.getPassword())) diaryToFind.unlock();
+        else throw new IncorrectPasswordException("Password is Incorrect");
     }
 }
