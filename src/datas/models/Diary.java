@@ -7,7 +7,7 @@ public class Diary {
 
     private String username;
     private String password;
-    public boolean isLocked;
+    private boolean isLocked;
 
     public Diary(){}
 
