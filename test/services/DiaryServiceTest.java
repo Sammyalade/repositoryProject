@@ -37,15 +37,16 @@ public class DiaryServiceTest {
     }
 
     @Test
-    public void registerUser_loginWithUserName_loginReturnsDiaryTest(){
+    public void registerUser_loginWithUserName_isLockedIsFalseTest(){
         RegisterRequest registerRequest = new RegisterRequest();
         registerRequest.setUsername("username");
         registerRequest.setPassword("password");
-        diaryService.register(registerRequest);
+        Diary newDiary = diaryService.register(registerRequest);
         LoginRequest loginRequest = new LoginRequest();
         loginRequest.setUsername("username");
         loginRequest.setPassword("password");
-        assertTrue(diaryService.login(loginRequest));
+        diaryService.login(loginRequest);
+        assertFalse(newDiary.isLocked());
     }
 
     @Test
