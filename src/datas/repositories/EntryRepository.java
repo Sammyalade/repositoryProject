@@ -14,4 +14,5 @@ public interface EntryRepository {
     void delete(Entry entry);
 
     void deleteAll();
+    Entry findBy(String username);
 }
