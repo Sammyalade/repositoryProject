@@ -16,7 +16,6 @@ public class EntryServiceImpl implements EntryService {
     @Override
     public Entry create(EntryCreationRequest entry) {
         ++countOfEntry;
-        entry.setId(countOfEntry);
         return entryRepository.save(new Entry(entry.getTitle(), entry.getBody(), "author"));
     }
 
