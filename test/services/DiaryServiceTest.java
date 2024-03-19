@@ -1,10 +1,6 @@
 package services;
 
 import datas.models.Diary;
-import datas.repositories.DiaryRepository;
-import datas.repositories.DiaryRepositoryImpl;
-import datas.repositories.EntryRepository;
-import datas.repositories.EntryRepositoryImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import services.dtos.LoginRequest;
