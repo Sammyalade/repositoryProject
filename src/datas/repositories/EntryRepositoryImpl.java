@@ -52,4 +52,12 @@ public class EntryRepositoryImpl implements EntryRepository{
     public void deleteAll() {
         entries.clear();
     }
+
+    @Override
+    public Entry findBy(String username) {
+        for(Entry entry: entries) {
+            if (entry.getAuthor().equals(username)) return entry;
+        }
+        return null;
+    }
 }
