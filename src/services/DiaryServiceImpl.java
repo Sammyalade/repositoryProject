@@ -4,6 +4,7 @@ import datas.models.Diary;
 import datas.repositories.DiaryRepository;
 import datas.repositories.DiaryRepositoryImpl;
 import services.dtos.EntryCreationRequest;
+import services.dtos.EntryUpdateRequest;
 import services.dtos.LoginRequest;
 import services.dtos.RegisterRequest;
 import services.exceptions.EmptyStringException;
@@ -36,6 +37,16 @@ public class DiaryServiceImpl implements DiaryService{
     @Override
     public void createEntry(EntryCreationRequest entryCreationRequest) {
         entryService.create(entryCreationRequest);
+    }
+
+    @Override
+    public void updateEntry(EntryUpdateRequest entryUpdateRequest) {
+        entryService.update(entryUpdateRequest);
+    }
+
+    @Override
+    public void getAllEntries(String username) {
+        entryService.getAllEntries("username");
     }
 
 
