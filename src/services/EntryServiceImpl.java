@@ -24,7 +24,7 @@ public class EntryServiceImpl implements EntryService {
     public List<Entry> getAllEntries(String username) {
         List<Entry> result = new ArrayList<>();
         for(Entry entry: entryRepository.findAll()) {
-            if (entry.getAuthor().equals(username)){
+            if (entry.getAuthor().equals(username.toLowerCase())){
                 result.add(entry);
             }
         }
@@ -32,8 +32,8 @@ public class EntryServiceImpl implements EntryService {
     }
 
     @Override
-    public Entry checkEntryById(int id) {
-        return entryRepository.findById(id);
+    public Entry checkEntryBy(String username) {
+        return entryRepository.findBy(username);
     }
 
     @Override
