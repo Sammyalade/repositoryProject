@@ -10,7 +10,7 @@ public interface EntryService {
 
     Entry create(EntryCreationRequest newEntry);
 
-    List<Entry> getAllEntries();
+    List<Entry> getAllEntries(String username);
 
     Entry checkEntryById(int id);
 
