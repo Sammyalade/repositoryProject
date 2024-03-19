@@ -22,9 +22,7 @@ public class DiaryServiceTest {
 
     @BeforeEach
     public void initializeDiaryService() {
-        DiaryRepository diaryRepository = new DiaryRepositoryImpl();
-        EntryService entryService = new EntryServiceImpl();
-        diaryService = new DiaryServiceImpl(diaryRepository, entryService);
+        diaryService = new DiaryServiceImpl();
     }
 
     @Test
