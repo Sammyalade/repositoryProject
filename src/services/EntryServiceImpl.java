@@ -20,7 +20,7 @@ public class EntryServiceImpl implements EntryService {
     public Entry create(EntryCreationRequest entry) {
         ++countOfEntry;
         entry.setId(countOfEntry);
-        return entryRepository.save(new Entry(entry.getId(), entry.getTitle(), entry.getBody()));
+        return entryRepository.save(new Entry(entry.getTitle(), entry.getBody()));
     }
 
     @Override
@@ -43,13 +43,9 @@ public class EntryServiceImpl implements EntryService {
         entryRepository.delete(entry);
     }
 
-    private long generateId() {
-        return countOfEntry;
-    }
-
     @Override
     public Entry update(EntryUpdateRequest entryUpdateRequest) {
         entryRepository.delete(entryRepository.findById(entryUpdateRequest.getId()));
-        return entryRepository.save(new Entry(entryUpdateRequest.getId(), entryUpdateRequest.getTitle(), entryUpdateRequest.getBody()));
+        return entryRepository.save(new Entry(entryUpdateRequest.getTitle(), entryUpdateRequest.getBody()));
     }
 }
