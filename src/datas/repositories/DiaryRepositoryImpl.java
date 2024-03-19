@@ -11,19 +11,14 @@ public class DiaryRepositoryImpl implements DiaryRepository{
     private final List<Diary> diaries = new ArrayList<>();
     @Override
     public Diary save(Diary diary) {
-        checkForExistingDiary(diary);
+        removeExistingDiary(diary);
         diaries.add(diary);
         count++;
         return diary;
     }
 
-    private void checkForExistingDiary(Diary diary) {
-        for(Diary diaryCheck : diaries){
-            if(diary.getUsername().equals(diaryCheck.getUsername())){
-                diaries.remove(diaryCheck);
-                diaries.add(diary);
-            }
-        }
+    private void removeExistingDiary(Diary diary) {
+        diaries.removeIf(diaryCheck -> diary.getUsername().equals(diaryCheck.getUsername()));
     }
 
     @Override
