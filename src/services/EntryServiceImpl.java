@@ -37,6 +37,11 @@ public class EntryServiceImpl implements EntryService {
     }
 
     @Override
+    public Entry checkEntryBy(long id) {
+        return entryRepository.findById(id);
+    }
+
+    @Override
     public void delete(int id) {
         entryRepository.delete(id);
     }
