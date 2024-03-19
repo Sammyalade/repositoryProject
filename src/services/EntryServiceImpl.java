@@ -7,6 +7,7 @@ import services.dtos.EntryCreationRequest;
 import services.dtos.EntryUpdateRequest;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class EntryServiceImpl implements EntryService {
@@ -20,8 +21,14 @@ public class EntryServiceImpl implements EntryService {
     }
 
     @Override
-    public List<Entry> getAllEntries() {
-        return entryRepository.findAll();
+    public List<Entry> getAllEntries(String username) {
+        List<Entry> result = new ArrayList<>();
+        for(Entry entry: entryRepository.findAll()) {
+            if (entry.getAuthor().equals(username)){
+                result.add(entry);
+            }
+        }
+        return result;
     }
 
     @Override
