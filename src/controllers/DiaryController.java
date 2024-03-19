@@ -6,6 +6,7 @@ import services.DiaryServiceImpl;
 import services.EntryService;
 import services.EntryServiceImpl;
 import services.dtos.EntryCreationRequest;
+import services.dtos.EntryUpdateRequest;
 import services.dtos.LoginRequest;
 import services.dtos.RegisterRequest;
 
@@ -40,5 +41,7 @@ public class DiaryController {
         entryService.delete(id);
     }
 
-    public void
+    public void updateEntry(EntryUpdateRequest entryUpdateRequest){
+        entryService.update(entryUpdateRequest);
+    }
 }
