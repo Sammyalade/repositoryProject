@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import services.dtos.EntryCreationRequest;
 import services.dtos.EntryUpdateRequest;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -29,7 +28,7 @@ public class EntryServiceTest {
         EntryCreationRequest entryCreationRequest = new EntryCreationRequest();
         entryCreationRequest.setTitle("First Entry");
         entryCreationRequest.setBody("This is my first entry");
-        assertEquals(new Entry(entryCreationRequest.getTitle(), entryCreationRequest.getBody()), entryService.create(entryCreationRequest));
+        assertEquals(new Entry(entryCreationRequest.getTitle(), entryCreationRequest.getBody(), "author"), entryService.create(entryCreationRequest));
     }
 
     @Test
