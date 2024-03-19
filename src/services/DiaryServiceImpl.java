@@ -51,7 +51,7 @@ public class DiaryServiceImpl implements DiaryService{
 
 
     private Diary createDiary(RegisterRequest registerRequest) {
-        Diary newDiary = new Diary(registerRequest.getUsername(),  registerRequest.getPassword());
+        Diary newDiary = new Diary(registerRequest.getUsername().toLowerCase(),  registerRequest.getPassword());
         return repository.save(newDiary);
     }
 
@@ -60,12 +60,12 @@ public class DiaryServiceImpl implements DiaryService{
     }
 
     private void validateUsername(RegisterRequest registerRequest) {
-        Diary diaryToFind = repository.findById(registerRequest.getUsername());
+        Diary diaryToFind = repository.findById(registerRequest.getUsername().toLowerCase());
         if(diaryToFind != null) throw new UsernameTakenException("Username already taken");
     }
 
     private Diary checkUsername(LoginRequest loginRequest) {
-        Diary diaryToFind = repository.findById(loginRequest.getUsername());
+        Diary diaryToFind = repository.findById(loginRequest.getUsername().toLowerCase());
         if(diaryToFind == null) throw new IncorrectUsernameException("Username Is Incorrect");
         return diaryToFind;
     }
