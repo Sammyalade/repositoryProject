@@ -100,4 +100,14 @@ public class DiaryServiceTest {
         assertThrows(EmptyStringException.class, ()->diaryService.register(registerRequest));
     }
 
+    @Test
+    public void createDiary_loginAndLogoutFromDiary_diaryIsLockedTest(){
+        RegisterRequest registerRequest = new RegisterRequest();
+        registerRequest.setUsername("username");
+        registerRequest.setPassword("password");
+        Diary newDiary = diaryService.register(registerRequest);
+        diaryService.logout("username");
+        assertTrue(newDiary.isLocked());
+    }
+
 }
