@@ -7,4 +7,5 @@ import services.dtos.RegisterRequest;
 public interface DiaryService {
     Diary register(RegisterRequest registerRequest);
     void login(LoginRequest loginRequest);
+    void logout(String username);
 }
