@@ -1,8 +1,7 @@
 package services;
 
 import datas.models.Entry;
-import datas.repositories.EntryRepository;
-import datas.repositories.EntryRepositoryImpl;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import services.dtos.EntryCreationRequest;
@@ -19,8 +18,12 @@ public class EntryServiceTest {
 
     @BeforeEach
     public void initializeEntryService(){
-        EntryRepository entryRepository = new EntryRepositoryImpl();
         entryService = new EntryServiceImpl();
+    }
+
+    @AfterEach
+    public void collapse(){
+        entryService.removeAllEntries();
     }
 
     @Test
