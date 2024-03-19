@@ -29,7 +29,7 @@ public class EntryServiceTest {
         EntryCreationRequest entryCreationRequest = new EntryCreationRequest();
         entryCreationRequest.setTitle("First Entry");
         entryCreationRequest.setBody("This is my first entry");
-        assertEquals(new Entry(1, entryCreationRequest.getTitle(), entryCreationRequest.getBody()), entryService.create(entryCreationRequest));
+        assertEquals(new Entry(entryCreationRequest.getTitle(), entryCreationRequest.getBody()), entryService.create(entryCreationRequest));
     }
 
     @Test
