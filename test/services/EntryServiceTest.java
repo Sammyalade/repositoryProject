@@ -73,7 +73,7 @@ public class EntryServiceTest {
         Entry entry1 = entryService.create(entryCreationRequest);
         Entry entry2 = entryService.create(entryCreationRequest2);
         List<Entry> entryList = List.of(new Entry[]{entry1, entry2});
-        assertEquals(entryList, entryService.getAllEntries());
+        assertEquals(entryList, entryService.getAllEntries("username"));
     }
 
     @Test
