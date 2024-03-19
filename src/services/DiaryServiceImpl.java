@@ -26,12 +26,14 @@ public class DiaryServiceImpl implements DiaryService{
 
     @Override
     public void login(LoginRequest loginRequest) {
-        checkPassword(loginRequest, checkUsername(loginRequest));
+        repository.save(checkPassword(loginRequest, checkUsername(loginRequest)));
     }
 
     @Override
     public void logout(String username) {
-        repository.findById(username).setLock(true);
+       Diary diary = repository.findById(username);
+       diary.setLock(true);
+       repository.save(diary);
     }
 
     @Override
@@ -70,8 +72,9 @@ public class DiaryServiceImpl implements DiaryService{
         return diaryToFind;
     }
 
-    private void checkPassword(LoginRequest loginRequest, Diary diaryToFind) {
+    private Diary checkPassword(LoginRequest loginRequest, Diary diaryToFind) {
         if(diaryToFind.getPassword().equals(loginRequest.getPassword())) diaryToFind.setLock(false);
         else throw new IncorrectPasswordException("Password is Incorrect");
+        return diaryToFind;
     }
 }
