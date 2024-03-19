@@ -19,4 +19,6 @@ public interface EntryService {
     void delete(Entry entry);
 
     Entry update(EntryUpdateRequest entryUpdateRequest);
+
+    void removeAllEntries();
 }
