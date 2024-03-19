@@ -12,11 +12,9 @@ import java.util.List;
 
 public class EntryServiceImpl implements EntryService {
     private static EntryRepository entryRepository = new EntryRepositoryImpl();
-    private long countOfEntry;
 
     @Override
     public Entry create(EntryCreationRequest entry) {
-        ++countOfEntry;
         return entryRepository.save(new Entry(entry.getTitle(), entry.getBody(), "author"));
     }
 
