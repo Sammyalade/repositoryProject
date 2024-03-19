@@ -13,7 +13,7 @@ public interface EntryService {
     List<Entry> getAllEntries(String username);
 
     Entry checkEntryBy(String username);
-
+    Entry checkEntryBy(long id);
     void delete(int id);
 
     void delete(Entry entry);
