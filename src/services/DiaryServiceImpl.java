@@ -32,6 +32,8 @@ public class DiaryServiceImpl implements DiaryService{
     }
 
 
+
+
     private Diary createDiary(RegisterRequest registerRequest) {
         Diary newDiary = new Diary(registerRequest.getUsername(),  registerRequest.getPassword());
         return repository.save(newDiary);
