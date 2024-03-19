@@ -4,9 +4,13 @@ import java.time.LocalDate;
 
 public class Entry {
 
-    private final long id;
+    private long id;
     private String title;
     private String body;
+
+    public void setId(long id){
+        this.id = id;
+    }
 
     public long getId() {
         return id;
@@ -34,8 +38,7 @@ public class Entry {
 
     private final LocalDate dateCreated = LocalDate.now();
 
-    public Entry(long id, String title, String body) {
-        this.id = id;
+    public Entry(String title, String body) {
         this.title = title;
         this.body = body;
     }
