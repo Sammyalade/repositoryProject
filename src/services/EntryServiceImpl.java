@@ -45,4 +45,9 @@ public class EntryServiceImpl implements EntryService {
         entryRepository.delete(entryRepository.findById(entryUpdateRequest.getId()));
         return entryRepository.save(new Entry(entryUpdateRequest.getTitle(), entryUpdateRequest.getBody(), "author"));
     }
+
+    @Override
+    public void removeAllEntries() {
+        entryRepository.deleteAll();
+    }
 }
