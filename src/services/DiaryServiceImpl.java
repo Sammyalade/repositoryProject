@@ -31,7 +31,10 @@ public class DiaryServiceImpl implements DiaryService{
         checkPassword(loginRequest, checkUsername(loginRequest));
     }
 
-
+    @Override
+    public void logout(String username) {
+        repository.findById(username).setLock(true);
+    }
 
 
     private Diary createDiary(RegisterRequest registerRequest) {
@@ -55,7 +58,7 @@ public class DiaryServiceImpl implements DiaryService{
     }
 
     private void checkPassword(LoginRequest loginRequest, Diary diaryToFind) {
-        if(diaryToFind.getPassword().equals(loginRequest.getPassword())) diaryToFind.unlock();
+        if(diaryToFind.getPassword().equals(loginRequest.getPassword())) diaryToFind.setLock(false);
         else throw new IncorrectPasswordException("Password is Incorrect");
     }
 }
