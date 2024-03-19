@@ -42,10 +42,10 @@ public class EntryServiceTest {
         EntryCreationRequest entryCreationRequest2 = new EntryCreationRequest();
         entryCreationRequest2.setTitle("First Entry");
         entryCreationRequest2.setBody("This is my first entry");
-        entryService.create(entryCreationRequest);
-        entryService.create(entryCreationRequest2);
-        assertEquals(1, entryCreationRequest.getId());
-        assertEquals(2, entryCreationRequest2.getId());
+        Entry entry1 = entryService.create(entryCreationRequest);
+        Entry entry2 = entryService.create(entryCreationRequest2);
+        assertEquals(1, entry1.getId());
+        assertEquals(2, entry2.getId());
     }
 
     @Test
