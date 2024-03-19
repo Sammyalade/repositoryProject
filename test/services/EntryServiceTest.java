@@ -20,7 +20,7 @@ public class EntryServiceTest {
     @BeforeEach
     public void initializeEntryService(){
         EntryRepository entryRepository = new EntryRepositoryImpl();
-        entryService = new EntryServiceImpl(entryRepository);
+        entryService = new EntryServiceImpl();
     }
 
     @Test
