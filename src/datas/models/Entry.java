@@ -8,6 +8,16 @@ public class Entry {
     private String title;
     private String body;
 
+    private String author;
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
     public void setId(long id){
         this.id = id;
     }
@@ -38,9 +48,10 @@ public class Entry {
 
     private final LocalDate dateCreated = LocalDate.now();
 
-    public Entry(String title, String body) {
+    public Entry(String title, String body, String author) {
         this.title = title;
         this.body = body;
+        this.author = author;
     }
 
     public boolean equals(Object object){
