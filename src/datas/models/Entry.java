@@ -46,6 +46,17 @@ public class Entry {
         return dateCreated;
     }
 
+    @Override
+    public String toString() {
+        return "Entry{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", body='" + body + '\'' +
+                ", author='" + author + '\'' +
+                ", dateCreated=" + dateCreated +
+                '}';
+    }
+
     private final LocalDate dateCreated = LocalDate.now();
 
     public Entry(String title, String body, String author) {
