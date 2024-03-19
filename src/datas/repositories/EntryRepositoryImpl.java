@@ -51,6 +51,7 @@ public class EntryRepositoryImpl implements EntryRepository{
     @Override
     public void deleteAll() {
         entries.clear();
+        count = 0;
     }
 
     @Override
