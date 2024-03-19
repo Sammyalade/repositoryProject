@@ -11,8 +11,9 @@ public class EntryRepositoryImpl implements EntryRepository{
 
     @Override
     public Entry save(Entry entry) {
-        entries.add(entry);
         count++;
+        entry.setId(count);
+        entries.add(entry);
         return entry;
     }
 
