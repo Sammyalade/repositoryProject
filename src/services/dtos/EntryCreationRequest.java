@@ -2,27 +2,33 @@ package services.dtos;
 
 public class EntryCreationRequest {
 
-    private long id;
+    private String title;
+    private String body;
 
     public String getTitle() {
-        return null;
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getBody() {
-        return null;
+        return body;
     }
 
-    public void setTitle(String firstEntry) {
+    public void setBody(String body) {
+        this.body = body;
     }
 
-    public void setBody(String thisIsMyFirstEntry) {
+    public String getUsername() {
+        return username;
     }
 
-    public long getId() {
-        return id;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public void setId(long countOfEntry) {
-        id = countOfEntry;
-    }
+    private String username;
+
 }
