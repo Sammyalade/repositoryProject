@@ -23,14 +23,14 @@ public class EntryRepositoryTest {
     }
     @Test
     public void saveEntry_countReturnsOneTest(){
-        Entry entry = new Entry(1, "Story Of My Life", "123");
+        Entry entry = new Entry("Story Of My Life", "123");
         entryRepository.save(entry);
         assertEquals(1, entryRepository.count());
     }
 
     @Test
     public void find_entry_returnsEntry(){
-        Entry entry = new Entry(1, "Story Of My Life", "123");
+        Entry entry = new Entry("Story Of My Life", "123");
         entryRepository.save(entry);
         assertEquals(entry, entryRepository.findById(1));
     }
@@ -42,8 +42,8 @@ public class EntryRepositoryTest {
 
     @Test
     public void findAllEntry_returnsListOfEntries(){
-        Entry entry = new Entry(1, "Story Of My Life", "123");
-        Entry entry1 = new Entry(1, "Story Of My Life", "123");
+        Entry entry = new Entry("Story Of My Life", "123");
+        Entry entry1 = new Entry("Story Of My Life", "123");
         entryRepository.save(entry);
         entryRepository.save(entry1);
         List<Entry> entries = List.of(new Entry[]{entry, entry1});
@@ -57,8 +57,8 @@ public class EntryRepositoryTest {
 
     @Test
     public void addTwoEntry_deleteOneEntry_countOfEntryIsOneTest(){
-        Entry entry = new Entry(1, "Story Of My Life", "123");
-        Entry entry1 = new Entry(2, "Story Of My Life", "123");
+        Entry entry = new Entry("Story Of My Life", "123");
+        Entry entry1 = new Entry("Story Of My Life", "123");
         entryRepository.save(entry);
         entryRepository.save(entry1);
         entryRepository.delete(1);
@@ -67,8 +67,8 @@ public class EntryRepositoryTest {
 
     @Test
     public void addTwoEntry_deleteOneById_findEntryReturnsNullTest(){
-        Entry entry = new Entry(1, "Story Of My Life", "123");
-        Entry entry1 = new Entry(2, "Story Of My Life", "123");
+        Entry entry = new Entry( "Story Of My Life", "123");
+        Entry entry1 = new Entry( "Story Of My Life", "123");
         entryRepository.save(entry);
         entryRepository.save(entry1);
         entryRepository.delete(1);
@@ -77,8 +77,8 @@ public class EntryRepositoryTest {
 
     @Test
     public void addTwoEntries_deleteOneEntry_countOfEntryIsOneTest(){
-        Entry entry = new Entry(1, "Story Of My Life", "123");
-        Entry entry1 = new Entry(2, "Story Of My Life", "123");
+        Entry entry = new Entry("Story Of My Life", "123");
+        Entry entry1 = new Entry("Story Of My Life", "123");
         entryRepository.save(entry);
         entryRepository.save(entry1);
         entryRepository.delete(entry);
@@ -87,8 +87,8 @@ public class EntryRepositoryTest {
 
     @Test
     public void addTwoEntries_deleteOneEntry_findEntryReturnsNullTest(){
-        Entry entry = new Entry(1, "Story Of My Life", "123");
-        Entry entry1 = new Entry(2, "Story Of My Life", "123");
+        Entry entry = new Entry("Story Of My Life", "123");
+        Entry entry1 = new Entry("Story Of My Life", "123");
         entryRepository.save(entry);
         entryRepository.save(entry1);
         entryRepository.delete(entry);
@@ -97,7 +97,7 @@ public class EntryRepositoryTest {
 
     @Test
     public void createEntry_returnsEntryTest(){
-        Entry entry = new Entry(2, "Story Of My Life", "123");
+        Entry entry = new Entry("Story Of My Life", "123");
         assertEquals(entry, entryRepository.save(entry));
     }
 }
