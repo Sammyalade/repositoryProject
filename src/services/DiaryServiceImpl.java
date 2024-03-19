@@ -2,6 +2,8 @@ package services;
 
 import datas.models.Diary;
 import datas.repositories.DiaryRepository;
+import datas.repositories.DiaryRepositoryImpl;
+import services.dtos.EntryCreationRequest;
 import services.dtos.LoginRequest;
 import services.dtos.RegisterRequest;
 import services.exceptions.EmptyStringException;
@@ -10,14 +12,9 @@ import services.exceptions.IncorrectUsernameException;
 import services.exceptions.UsernameTakenException;
 
 public class DiaryServiceImpl implements DiaryService{
-    private final DiaryRepository repository;
+    private final DiaryRepository repository = new DiaryRepositoryImpl();
+    private final EntryService entryService = new EntryServiceImpl();
 
-    private final EntryService entryService;
-
-    public DiaryServiceImpl(DiaryRepository diaryRepository, EntryService entryService){
-        this.entryService = entryService;
-        repository = diaryRepository;
-    }
 
     @Override
     public Diary register(RegisterRequest registerRequest) {
@@ -34,6 +31,11 @@ public class DiaryServiceImpl implements DiaryService{
     @Override
     public void logout(String username) {
         repository.findById(username).setLock(true);
+    }
+
+    @Override
+    public void createEntry(EntryCreationRequest entryCreationRequest) {
+        entryService.create(entryCreationRequest);
     }
 
 
