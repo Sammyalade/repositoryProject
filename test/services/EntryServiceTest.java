@@ -82,7 +82,7 @@ public class EntryServiceTest {
         entryCreationRequest.setTitle("First Entry");
         entryCreationRequest.setBody("This is my first entry");
         Entry entry = entryService.create(entryCreationRequest);
-        assertEquals(entry, entryService.checkEntryById(1));
+        assertEquals(entry, entryService.checkEntryBy(1));
     }
 
     @Test
@@ -92,7 +92,7 @@ public class EntryServiceTest {
         entryCreationRequest.setBody("This is my first entry");
         Entry entry = entryService.create(entryCreationRequest);
         entryService.delete(1);
-        assertNull(entryService.checkEntryById(1));
+        assertNull(entryService.checkEntryBy(1));
     }
 
     @Test
@@ -102,6 +102,6 @@ public class EntryServiceTest {
         entryCreationRequest.setBody("This is my first entry");
         Entry entry = entryService.create(entryCreationRequest);
         entryService.delete(entry);
-        assertNull(entryService.checkEntryById(1));
+        assertNull(entryService.checkEntryBy(1));
     }
 }
