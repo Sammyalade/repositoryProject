@@ -18,16 +18,22 @@ public class DiaryController {
     private DiaryService diaryService = new DiaryServiceImpl();
     private EntryService entryService = new EntryServiceImpl();
 
-    public void registerUser(RegisterRequest registerRequest){
+    public String registerUser(RegisterRequest registerRequest){
         try {
-            diaryService.register(registerRequest);
+           diaryService.register(registerRequest);
+           return "Registration Successful";
         } catch (DiaryAppException e){
-            e.getMessage();
+           return e.getMessage();
         }
     }
 
-    public void login(LoginRequest loginRequest){
-        diaryService.login(loginRequest);
+    public String login(LoginRequest loginRequest){
+        try {
+            diaryService.login(loginRequest);
+            return "Login Successful";
+        } catch (DiaryAppException e){
+            return e.getMessage();
+        }
     }
 
     public void logout(String username){
