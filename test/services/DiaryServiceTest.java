@@ -110,4 +110,6 @@ public class DiaryServiceTest {
         assertTrue(newDiary.isLocked());
     }
 
+
+
 }
