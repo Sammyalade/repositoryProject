@@ -1,6 +1,7 @@
 package datas.repositories;
 
 import datas.models.Diary;
+import exceptions.DiaryAppException;
 
 import java.util.ArrayList;
 import java.util.List;
