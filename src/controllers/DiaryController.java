@@ -45,8 +45,12 @@ public class DiaryController {
         }
     }
 
-    public Entry createEntry(EntryCreationRequest entryCreationRequest){
-        return diaryService.createEntry(entryCreationRequest);
+    public String createEntry(EntryCreationRequest entryCreationRequest){
+        try{
+            return diaryService.createEntry(entryCreationRequest).toString();
+        } catch(DiaryAppException e){
+            return e.getMessage();
+        }
     }
 
     public List<Entry> getAllEntriesBy(String username){
