@@ -69,7 +69,7 @@ public class DiaryServiceTest {
         LoginRequest loginRequest = new LoginRequest();
         loginRequest.setUsername("IncorrectUsername");
         loginRequest.setPassword("password");
-        assertThrows(DiaryNotFound.class, ()->diaryService.login(loginRequest));
+        assertThrows(IncorrectUsernameException.class, ()->diaryService.login(loginRequest));
     }
 
     @Test
