@@ -1,6 +1,7 @@
 package services;
 
 import datas.models.Diary;
+import datas.models.Entry;
 import datas.repositories.DiaryRepository;
 import datas.repositories.DiaryRepositoryImpl;
 import services.dtos.EntryCreationRequest;
@@ -37,8 +38,8 @@ public class DiaryServiceImpl implements DiaryService{
     }
 
     @Override
-    public void createEntry(EntryCreationRequest entryCreationRequest) {
-        entryService.create(entryCreationRequest);
+    public Entry createEntry(EntryCreationRequest entryCreationRequest) {
+        return entryService.create(entryCreationRequest);
     }
 
     @Override
