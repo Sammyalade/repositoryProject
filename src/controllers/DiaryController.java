@@ -1,6 +1,7 @@
 package controllers;
 
 import datas.models.Entry;
+import exceptions.DiaryAppException;
 import services.DiaryService;
 import services.DiaryServiceImpl;
 import services.EntryService;
@@ -18,7 +19,11 @@ public class DiaryController {
     private EntryService entryService = new EntryServiceImpl();
 
     public void registerUser(RegisterRequest registerRequest){
-        diaryService.register(registerRequest);
+        try {
+            diaryService.register(registerRequest);
+        } catch (DiaryAppException e){
+            e.getMessage();
+        }
     }
 
     public void login(LoginRequest loginRequest){
