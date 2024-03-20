@@ -113,6 +113,8 @@ public class DiaryControllerTest {
         registerRequest.setUsername("username");
         registerRequest.setPassword("password");
         diaryController.registerUser(registerRequest);
-        assertEquals("Thank you for using our app",diaryController.logout("u1sername"));
+        assertEquals("Diary not found",diaryController.logout("u1sername"));
     }
+
+
 }
