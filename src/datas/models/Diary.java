@@ -32,6 +32,13 @@ public class Diary {
         return password;
     }
 
+    @Override
+    public String toString() {
+        return "Diary{" +
+                "username='" + username + '\'' +
+                '}';
+    }
+
     public void setPassword(String password) {
         this.password = password;
     }
