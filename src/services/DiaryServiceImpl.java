@@ -51,6 +51,12 @@ public class DiaryServiceImpl implements DiaryService{
         entryService.getAllEntries("username");
     }
 
+    @Override
+    public void changePassword(LoginRequest loginRequest) {
+        Diary diaryToChangePassword = repository.findById(loginRequest.getUsername());
+        diaryToChangePassword.setPassword(loginRequest.getPassword());
+    }
+
 
     private Diary createDiary(RegisterRequest registerRequest) {
         Diary newDiary = new Diary(registerRequest.getUsername().toLowerCase(),  registerRequest.getPassword());
