@@ -1,6 +1,7 @@
 package services;
 
 import datas.models.Diary;
+import datas.repositories.DiaryNotFound;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -68,7 +69,7 @@ public class DiaryServiceTest {
         LoginRequest loginRequest = new LoginRequest();
         loginRequest.setUsername("IncorrectUsername");
         loginRequest.setPassword("password");
-        assertThrows(IncorrectUsernameException.class, ()->diaryService.login(loginRequest));
+        assertThrows(DiaryNotFound.class, ()->diaryService.login(loginRequest));
     }
 
     @Test
