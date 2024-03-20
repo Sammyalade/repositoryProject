@@ -14,7 +14,7 @@ import exceptions.IncorrectUsernameException;
 import exceptions.UsernameTakenException;
 
 public class DiaryServiceImpl implements DiaryService{
-    private final DiaryRepository repository = new DiaryRepositoryImpl();
+    private static DiaryRepository repository = new DiaryRepositoryImpl();
     private final EntryService entryService = new EntryServiceImpl();
 
 
@@ -56,6 +56,11 @@ public class DiaryServiceImpl implements DiaryService{
     public void changePassword(LoginRequest loginRequest) {
         Diary diaryToChangePassword = repository.findById(loginRequest.getUsername());
         diaryToChangePassword.setPassword(loginRequest.getPassword());
+    }
+
+    @Override
+    public void removeAllDiaries() {
+        repository.deleteAll();
     }
 
 
