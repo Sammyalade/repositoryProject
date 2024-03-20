@@ -36,8 +36,13 @@ public class DiaryController {
         }
     }
 
-    public void logout(String username){
-        diaryService.logout(username);
+    public String logout(String username){
+        try{
+            diaryService.logout(username);
+            return "Thank you for using our app";
+        } catch (DiaryAppException e){
+            return e.getMessage();
+        }
     }
 
     public Entry createEntry(EntryCreationRequest entryCreationRequest){
