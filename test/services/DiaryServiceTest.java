@@ -5,10 +5,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import services.dtos.LoginRequest;
 import services.dtos.RegisterRequest;
-import services.exceptions.EmptyStringException;
-import services.exceptions.IncorrectPasswordException;
-import services.exceptions.IncorrectUsernameException;
-import services.exceptions.UsernameTakenException;
+import exceptions.EmptyStringException;
+import exceptions.IncorrectPasswordException;
+import exceptions.IncorrectUsernameException;
+import exceptions.UsernameTakenException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
