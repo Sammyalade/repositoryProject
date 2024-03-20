@@ -53,4 +53,9 @@ public class DiaryRepositoryImpl implements DiaryRepository{
         diaries.remove(diary);
         count--;
     }
+
+    @Override
+    public void deleteAll() {
+        diaries.clear();
+    }
 }
