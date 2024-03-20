@@ -44,4 +44,8 @@ public class DiaryController {
     public void updateEntry(EntryUpdateRequest entryUpdateRequest){
         entryService.update(entryUpdateRequest);
     }
+
+    public void changePassword(LoginRequest loginRequest){
+        diaryService.changePassword(loginRequest);
+    }
 }
