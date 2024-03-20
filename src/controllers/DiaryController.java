@@ -29,8 +29,8 @@ public class DiaryController {
         diaryService.logout(username);
     }
 
-    public void createEntry(EntryCreationRequest entryCreationRequest){
-        diaryService.createEntry(entryCreationRequest);
+    public Entry createEntry(EntryCreationRequest entryCreationRequest){
+        return diaryService.createEntry(entryCreationRequest);
     }
 
     public List<Entry> getAllEntriesBy(String username){
@@ -41,8 +41,8 @@ public class DiaryController {
         entryService.delete(id);
     }
 
-    public void updateEntry(EntryUpdateRequest entryUpdateRequest){
-        entryService.update(entryUpdateRequest);
+    public Entry updateEntry(EntryUpdateRequest entryUpdateRequest){
+        return entryService.update(entryUpdateRequest);
     }
 
     public void changePassword(LoginRequest loginRequest){
