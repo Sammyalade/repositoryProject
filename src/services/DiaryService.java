@@ -15,4 +15,5 @@ public interface DiaryService {
     void updateEntry(EntryUpdateRequest entryUpdateRequest);
     void getAllEntries(String username);
     void changePassword(LoginRequest loginRequest);
+    void removeAllDiaries();
 }
