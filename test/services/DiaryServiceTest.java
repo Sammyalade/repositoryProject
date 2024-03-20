@@ -1,6 +1,7 @@
 package services;
 
 import datas.models.Diary;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import services.dtos.LoginRequest;
@@ -19,6 +20,11 @@ public class DiaryServiceTest {
     @BeforeEach
     public void initializeDiaryService() {
         diaryService = new DiaryServiceImpl();
+    }
+
+    @AfterEach
+    public void collapse(){
+        diaryService.removeAllDiaries();
     }
 
     @Test
