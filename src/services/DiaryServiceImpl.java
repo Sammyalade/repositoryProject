@@ -2,6 +2,7 @@ package services;
 
 import datas.models.Diary;
 import datas.models.Entry;
+import datas.repositories.DiaryNotFound;
 import datas.repositories.DiaryRepository;
 import datas.repositories.DiaryRepositoryImpl;
 import services.dtos.EntryCreationRequest;
@@ -33,6 +34,9 @@ public class DiaryServiceImpl implements DiaryService{
     @Override
     public void logout(String username) {
        Diary diary = repository.findById(username);
+       if(diary == null){
+           throw new DiaryNotFound("Diary not found");
+       }
        diary.setLock(true);
        repository.save(diary);
     }
