@@ -97,4 +97,22 @@ public class DiaryControllerTest {
         registerRequest.setPassword("");
         assertEquals("Username or Password cannot be empty",diaryController.registerUser(registerRequest));
     }
+
+    @Test
+    public void createDiary_logoutUserTest(){
+        RegisterRequest registerRequest = new RegisterRequest();
+        registerRequest.setUsername("username");
+        registerRequest.setPassword("password");
+        diaryController.registerUser(registerRequest);
+        assertEquals("Thank you for using our app",diaryController.logout("username"));
+    }
+
+    @Test
+    public void createDiary_logoutUserWithIncorrectUsernameTest(){
+        RegisterRequest registerRequest = new RegisterRequest();
+        registerRequest.setUsername("username");
+        registerRequest.setPassword("password");
+        diaryController.registerUser(registerRequest);
+        assertEquals("Thank you for using our app",diaryController.logout("u1sername"));
+    }
 }
