@@ -8,10 +8,10 @@ import services.dtos.EntryCreationRequest;
 import services.dtos.EntryUpdateRequest;
 import services.dtos.LoginRequest;
 import services.dtos.RegisterRequest;
-import services.exceptions.EmptyStringException;
-import services.exceptions.IncorrectPasswordException;
-import services.exceptions.IncorrectUsernameException;
-import services.exceptions.UsernameTakenException;
+import exceptions.EmptyStringException;
+import exceptions.IncorrectPasswordException;
+import exceptions.IncorrectUsernameException;
+import exceptions.UsernameTakenException;
 
 public class DiaryServiceImpl implements DiaryService{
     private final DiaryRepository repository = new DiaryRepositoryImpl();
