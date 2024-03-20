@@ -82,4 +82,19 @@ public class DiaryControllerTest {
         assertEquals("Password is Incorrect", diaryController.login(loginRequest));
     }
 
+    @Test
+    public void registerUsernameWithEmptyString_throwsExceptionTest(){
+        RegisterRequest registerRequest = new RegisterRequest();
+        registerRequest.setUsername("");
+        registerRequest.setPassword("password");
+        assertEquals("Username or Password cannot be empty",diaryController.registerUser(registerRequest));
+    }
+
+    @Test
+    public void registerPasswordWithEmptyString_throwsExceptionTest(){
+        RegisterRequest registerRequest = new RegisterRequest();
+        registerRequest.setUsername("Username");
+        registerRequest.setPassword("");
+        assertEquals("Username or Password cannot be empty",diaryController.registerUser(registerRequest));
+    }
 }
