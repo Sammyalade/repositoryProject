@@ -12,7 +12,6 @@ public interface EntryRepository {
     long count();
     void delete(int id);
     void delete(Entry entry);
-
     void deleteAll();
     Entry findBy(String username);
 }
