@@ -141,7 +141,9 @@ public class DiaryControllerTest {
         entryCreationRequest.setTitle("Title");
         entryCreationRequest.setBody("Body");
         assertEquals("Diary to save Entry in not found",diaryController.createEntry(entryCreationRequest));
-
     }
+
+//    @Test
+//    public void
 
 }
