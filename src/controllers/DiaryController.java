@@ -59,9 +59,9 @@ public class DiaryController {
         }
     }
 
-    public String deleteEntry(int id) {
+    public String deleteEntry(int id, String username) {
         try {
-            entryService.delete(id);
+            diaryService.deleteEntry(username, id);
             return "Entry successfully deleted";
         } catch (DiaryAppException e){
             return e. getMessage();
@@ -74,4 +74,8 @@ public class DiaryController {
     public void changePassword(LoginRequest loginRequest){
         diaryService.changePassword(loginRequest);
     }
+
+//    public void b(){
+//        diaryService.
+//    }
 }
