@@ -2,10 +2,10 @@ package services;
 
 import datas.models.Diary;
 import datas.models.Entry;
-import services.dtos.EntryCreationRequest;
-import services.dtos.EntryUpdateRequest;
-import services.dtos.LoginRequest;
-import services.dtos.RegisterRequest;
+import dtos.EntryCreationRequest;
+import dtos.EntryUpdateRequest;
+import dtos.LoginRequest;
+import dtos.RegisterRequest;
 
 public interface DiaryService {
     Diary register(RegisterRequest registerRequest);
