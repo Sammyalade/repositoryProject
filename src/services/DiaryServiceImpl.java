@@ -43,6 +43,10 @@ public class DiaryServiceImpl implements DiaryService{
 
     @Override
     public Entry createEntry(EntryCreationRequest entryCreationRequest) {
+        Diary diary = repository.findById(entryCreationRequest.getUsername());
+        if(diary == null){
+            throw new DiaryNotFound("Diary to save Entry in not found");
+        }
         return entryService.create(entryCreationRequest);
     }
 
