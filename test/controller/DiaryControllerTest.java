@@ -127,7 +127,21 @@ public class DiaryControllerTest {
         entryCreationRequest.setUsername("username");
         entryCreationRequest.setTitle("Title");
         entryCreationRequest.setBody("Body");
-        assertEquals("Entry{id=1, title='Title', body='Body', author='author', dateCreated=2024-03-21}",diaryController.createEntry(entryCreationRequest));
+        assertEquals("Entry{id=1, title='Title', body='Body', author='username', dateCreated=2024-03-21}",diaryController.createEntry(entryCreationRequest));
+    }
+
+    @Test
+    public void createDiary_createEntryWithWrongUsername_throwsException(){
+        RegisterRequest registerRequest = new RegisterRequest();
+        registerRequest.setUsername("username");
+        registerRequest.setPassword("password");
+        diaryController.registerUser(registerRequest);
+        EntryCreationRequest entryCreationRequest = new EntryCreationRequest();
+        entryCreationRequest.setUsername("use1rname");
+        entryCreationRequest.setTitle("Title");
+        entryCreationRequest.setBody("Body");
+        assertEquals("Diary to save Entry in not found",diaryController.createEntry(entryCreationRequest));
+
     }
 
 }
