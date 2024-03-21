@@ -1,6 +1,7 @@
 package controller;
 
 import controllers.DiaryController;
+import exceptions.NoSuchEntryException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,6 +14,7 @@ import dtos.LoginRequest;
 import dtos.RegisterRequest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class DiaryControllerTest {
 
@@ -178,7 +180,7 @@ public class DiaryControllerTest {
         entryCreationRequest.setTitle("Title");
         entryCreationRequest.setBody("Body");
         diaryController.createEntry(entryCreationRequest);
-        assertEquals("Entry successfully deleted", diaryController.deleteEntry(2));
+        assertEquals("Entry successfully deleted", diaryController.deleteEntry(1, "username"));
     }
 
     @Test
@@ -192,7 +194,7 @@ public class DiaryControllerTest {
         entryCreationRequest.setTitle("Title");
         entryCreationRequest.setBody("Body");
         diaryController.createEntry(entryCreationRequest);
-        assertEquals("Entry successfully deleted", diaryController.deleteEntry(2));
+        assertThrows(NoSuchEntryException.class,()-> diaryController.deleteEntry(1, "usernsme"));
 
     }
 }
