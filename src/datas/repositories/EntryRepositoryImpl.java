@@ -37,7 +37,7 @@ public class EntryRepositoryImpl implements EntryRepository{
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(long id) {
         entries.remove(findById(id));
         count--;
     }
