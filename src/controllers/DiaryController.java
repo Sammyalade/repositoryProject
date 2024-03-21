@@ -6,10 +6,10 @@ import services.DiaryService;
 import services.DiaryServiceImpl;
 import services.EntryService;
 import services.EntryServiceImpl;
-import services.dtos.EntryCreationRequest;
-import services.dtos.EntryUpdateRequest;
-import services.dtos.LoginRequest;
-import services.dtos.RegisterRequest;
+import dtos.EntryCreationRequest;
+import dtos.EntryUpdateRequest;
+import dtos.LoginRequest;
+import dtos.RegisterRequest;
 
 public class DiaryController {
 
@@ -59,10 +59,14 @@ public class DiaryController {
         }
     }
 
-    public void deleteEntry(int id){
-        entryService.delete(id);
+    public String deleteEntry(int id) {
+        try {
+            entryService.delete(id);
+            return "Entry successfully deleted";
+        } catch (DiaryAppException e){
+            return e. getMessage();
+        }
     }
-
     public Entry updateEntry(EntryUpdateRequest entryUpdateRequest){
         return entryService.update(entryUpdateRequest);
     }
