@@ -67,7 +67,7 @@ public class DiaryServiceTest {
         LoginRequest loginRequest = new LoginRequest();
         loginRequest.setUsername("IncorrectUsername");
         loginRequest.setPassword("password");
-        assertThrows(IncorrectUsernameException.class, ()->diaryService.login(loginRequest));
+        assertThrows(UserNotFoundException.class, ()->diaryService.login(loginRequest));
     }
 
     @Test
@@ -118,7 +118,7 @@ public class DiaryServiceTest {
         entryCreationRequest.setUsername("use1rname");
         entryCreationRequest.setTitle("Title");
         entryCreationRequest.setBody("Body");
-        assertThrows(DiaryNotFound.class, ()->diaryService.createEntry(entryCreationRequest));
+        assertThrows(UserNotFoundException.class, ()->diaryService.createEntry(entryCreationRequest));
     }
 
     @Test
