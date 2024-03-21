@@ -5,6 +5,7 @@ import datas.repositories.DiaryNotFound;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import services.dtos.EntryCreationRequest;
 import services.dtos.LoginRequest;
 import services.dtos.RegisterRequest;
 import exceptions.EmptyStringException;
@@ -108,6 +109,19 @@ public class DiaryServiceTest {
         Diary newDiary = diaryService.register(registerRequest);
         diaryService.logout("username");
         assertTrue(newDiary.isLocked());
+    }
+
+    @Test
+    public void createDiary_createEntryWithWrongUsername_throwsException(){
+        RegisterRequest registerRequest = new RegisterRequest();
+        registerRequest.setUsername("username");
+        registerRequest.setPassword("password");
+        diaryService.register(registerRequest);
+        EntryCreationRequest entryCreationRequest = new EntryCreationRequest();
+        entryCreationRequest.setUsername("use1rname");
+        entryCreationRequest.setTitle("Title");
+        entryCreationRequest.setBody("Body");
+        assertThrows(DiaryNotFound.class, ()->diaryService.createEntry(entryCreationRequest));
     }
 
 
