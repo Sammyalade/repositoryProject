@@ -1,4 +1,4 @@
-package services.dtos;
+package dtos;
 
 public class EntryUpdateRequest {
 
