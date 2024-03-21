@@ -1,17 +1,16 @@
 package controller;
 
 import controllers.DiaryController;
-import datas.models.Entry;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import services.DiaryService;
 import services.DiaryServiceImpl;
-import services.dtos.EntryCreationRequest;
-import services.dtos.LoginRequest;
-import services.dtos.RegisterRequest;
-
-import java.util.List;
+import services.EntryService;
+import services.EntryServiceImpl;
+import dtos.EntryCreationRequest;
+import dtos.LoginRequest;
+import dtos.RegisterRequest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -19,6 +18,7 @@ public class DiaryControllerTest {
 
     private DiaryController diaryController;
     private DiaryService diaryService = new DiaryServiceImpl();;
+    private EntryService entryService = new EntryServiceImpl();
     @BeforeEach
     public void setUp(){
         diaryController = new DiaryController();
@@ -26,6 +26,8 @@ public class DiaryControllerTest {
     @AfterEach
     public void tearDown(){
         diaryService.removeAllDiaries();
+        entryService.removeAllEntries();
+
     }
 
 
@@ -165,4 +167,32 @@ public class DiaryControllerTest {
         assertEquals("[Entry{id=1, title='Title', body='Body', author='username', dateCreated=2024-03-21}, Entry{id=2, title='Title is not null', body='Body of the entry', author='username', dateCreated=2024-03-21}]",diaryController.getAllEntriesBy("username"));
     }
 
+    @Test
+    public void createEntry_deleteEntry_entryIsDeletedTest(){
+        RegisterRequest registerRequest = new RegisterRequest();
+        registerRequest.setUsername("username");
+        registerRequest.setPassword("password");
+        diaryController.registerUser(registerRequest);
+        EntryCreationRequest entryCreationRequest = new EntryCreationRequest();
+        entryCreationRequest.setUsername("username");
+        entryCreationRequest.setTitle("Title");
+        entryCreationRequest.setBody("Body");
+        diaryController.createEntry(entryCreationRequest);
+        assertEquals("Entry successfully deleted", diaryController.deleteEntry(2));
+    }
+
+    @Test
+    public void createEntry_deleteEntryWithWrongId_throwsExceptionTest(){
+        RegisterRequest registerRequest = new RegisterRequest();
+        registerRequest.setUsername("username");
+        registerRequest.setPassword("password");
+        diaryController.registerUser(registerRequest);
+        EntryCreationRequest entryCreationRequest = new EntryCreationRequest();
+        entryCreationRequest.setUsername("1username");
+        entryCreationRequest.setTitle("Title");
+        entryCreationRequest.setBody("Body");
+        diaryController.createEntry(entryCreationRequest);
+        assertEquals("Entry successfully deleted", diaryController.deleteEntry(2));
+
+    }
 }
