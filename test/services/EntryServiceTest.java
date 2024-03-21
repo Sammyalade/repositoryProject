@@ -4,8 +4,8 @@ import datas.models.Entry;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import services.dtos.EntryCreationRequest;
-import services.dtos.EntryUpdateRequest;
+import dtos.EntryCreationRequest;
+import dtos.EntryUpdateRequest;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
