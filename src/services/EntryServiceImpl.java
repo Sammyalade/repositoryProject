@@ -40,7 +40,7 @@ public class EntryServiceImpl implements EntryService {
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(long id) {
         entryRepository.delete(id);
     }
 
