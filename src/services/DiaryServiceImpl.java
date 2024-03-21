@@ -5,14 +5,11 @@ import datas.models.Entry;
 import datas.repositories.DiaryNotFound;
 import datas.repositories.DiaryRepository;
 import datas.repositories.DiaryRepositoryImpl;
-import services.dtos.EntryCreationRequest;
-import services.dtos.EntryUpdateRequest;
-import services.dtos.LoginRequest;
-import services.dtos.RegisterRequest;
-import exceptions.EmptyStringException;
-import exceptions.IncorrectPasswordException;
-import exceptions.IncorrectUsernameException;
-import exceptions.UsernameTakenException;
+import dtos.EntryCreationRequest;
+import dtos.EntryUpdateRequest;
+import dtos.LoginRequest;
+import dtos.RegisterRequest;
+import exceptions.*;
 
 public class DiaryServiceImpl implements DiaryService{
     private static DiaryRepository repository = new DiaryRepositoryImpl();
@@ -72,9 +69,17 @@ public class DiaryServiceImpl implements DiaryService{
     }
 
 
-    private Diary createDiary(RegisterRequest registerRequest) {
+    public Diary createDiary(RegisterRequest registerRequest) {
         Diary newDiary = new Diary(registerRequest.getUsername().toLowerCase(),  registerRequest.getPassword());
         return repository.save(newDiary);
+    }
+
+    public Entry checkEntryById(String username, long id){
+        Entry entry = entryService.checkEntryBy(id);
+        if(entry.getAuthor().equals(username)){
+            return entry;
+        }
+        throw new NoSuchEntryException("No such entry attached to this user");
     }
 
     private void checkForEmptyString(RegisterRequest registerRequest) {
