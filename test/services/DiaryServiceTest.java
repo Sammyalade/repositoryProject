@@ -2,16 +2,13 @@ package services;
 
 import datas.models.Diary;
 import datas.repositories.DiaryNotFound;
+import exceptions.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import dtos.EntryCreationRequest;
 import dtos.LoginRequest;
 import dtos.RegisterRequest;
-import exceptions.EmptyStringException;
-import exceptions.IncorrectPasswordException;
-import exceptions.IncorrectUsernameException;
-import exceptions.UsernameTakenException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -122,6 +119,49 @@ public class DiaryServiceTest {
         entryCreationRequest.setTitle("Title");
         entryCreationRequest.setBody("Body");
         assertThrows(DiaryNotFound.class, ()->diaryService.createEntry(entryCreationRequest));
+    }
+
+    @Test
+    public void createTwoDiary_createOneEntryEachForTheDiary_findFirstDiaryEntryWithDiaryTwoUsername_throwsException(){
+        RegisterRequest registerRequest = new RegisterRequest();
+        registerRequest.setUsername("username");
+        registerRequest.setPassword("password");
+        diaryService.register(registerRequest);
+
+        RegisterRequest registerRequest1 = new RegisterRequest();
+        registerRequest1.setUsername("username1");
+        registerRequest1.setPassword("password1");
+        diaryService.register(registerRequest1);
+
+        EntryCreationRequest entryCreationRequest = new EntryCreationRequest();
+        entryCreationRequest.setUsername("username");
+        entryCreationRequest.setTitle("Title");
+        entryCreationRequest.setBody("Body");
+
+        EntryCreationRequest entryCreationRequest1 = new EntryCreationRequest();
+        entryCreationRequest1.setUsername("username1");
+        entryCreationRequest1.setTitle("Title1");
+        entryCreationRequest1.setBody("Body1");
+
+        diaryService.createEntry(entryCreationRequest);
+        diaryService.createEntry(entryCreationRequest1);
+        assertThrows(NoSuchEntryException.class, ()-> diaryService.checkEntryById("username", 2));
+    }
+
+    @Test
+    public void createEntry_deleteEntryWithWrongUsername_throwsUserNotFoundExceptionTest(){
+        RegisterRequest registerRequest = new RegisterRequest();
+        registerRequest.setUsername("username");
+        registerRequest.setPassword("password");
+        diaryService.register(registerRequest);
+
+        EntryCreationRequest entryCreationRequest = new EntryCreationRequest();
+        entryCreationRequest.setUsername("username");
+        entryCreationRequest.setTitle("Title");
+        entryCreationRequest.setBody("Body");
+
+        diaryService.createEntry(entryCreationRequest);
+        assertThrows(UserNotFoundException.class, ()-> diaryService.deleteEntry("u1sername", 1));
     }
 
 
