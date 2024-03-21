@@ -14,7 +14,7 @@ public interface EntryService {
 
     Entry checkEntryBy(String username);
     Entry checkEntryBy(long id);
-    void delete(int id);
+    void delete(long id);
 
     void delete(Entry entry);
 
