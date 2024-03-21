@@ -10,7 +10,7 @@ public interface EntryRepository {
     List<Entry> findAll();
     Entry findById(long id);
     long count();
-    void delete(int id);
+    void delete(long id);
     void delete(Entry entry);
     void deleteAll();
     Entry findBy(String username);
