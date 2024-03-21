@@ -1,6 +1,7 @@
 package controller;
 
 import controllers.DiaryController;
+import datas.models.Entry;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,6 +10,8 @@ import services.DiaryServiceImpl;
 import services.dtos.EntryCreationRequest;
 import services.dtos.LoginRequest;
 import services.dtos.RegisterRequest;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -144,6 +147,22 @@ public class DiaryControllerTest {
     }
 
     @Test
-    public void
+    public void registerTwoEntry_getAListOfEntry_returnsListOfEntryTest(){
+        RegisterRequest registerRequest = new RegisterRequest();
+        registerRequest.setUsername("username");
+        registerRequest.setPassword("password");
+        diaryController.registerUser(registerRequest);
+        EntryCreationRequest entryCreationRequest = new EntryCreationRequest();
+        entryCreationRequest.setUsername("username");
+        entryCreationRequest.setTitle("Title");
+        entryCreationRequest.setBody("Body");
+        diaryController.createEntry(entryCreationRequest);
+        EntryCreationRequest entryCreationRequest1 = new EntryCreationRequest();
+        entryCreationRequest1.setUsername("username");
+        entryCreationRequest1.setTitle("Title is not null");
+        entryCreationRequest1.setBody("Body of the entry");
+        diaryController.createEntry(entryCreationRequest1);
+        assertEquals("[Entry{id=1, title='Title', body='Body', author='username', dateCreated=2024-03-21}, Entry{id=2, title='Title is not null', body='Body of the entry', author='username', dateCreated=2024-03-21}]",diaryController.getAllEntriesBy("username"));
+    }
 
 }
