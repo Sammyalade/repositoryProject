@@ -143,7 +143,7 @@ public class DiaryControllerTest {
         assertEquals("Diary to save Entry in not found",diaryController.createEntry(entryCreationRequest));
     }
 
-//    @Test
-//    public void
+    @Test
+    public void
 
 }
