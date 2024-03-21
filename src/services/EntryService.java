@@ -1,8 +1,8 @@
 package services;
 
 import datas.models.Entry;
-import services.dtos.EntryCreationRequest;
-import services.dtos.EntryUpdateRequest;
+import dtos.EntryCreationRequest;
+import dtos.EntryUpdateRequest;
 
 import java.util.List;
 
