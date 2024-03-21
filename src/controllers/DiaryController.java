@@ -11,8 +11,6 @@ import services.dtos.EntryUpdateRequest;
 import services.dtos.LoginRequest;
 import services.dtos.RegisterRequest;
 
-import java.util.List;
-
 public class DiaryController {
 
     private DiaryService diaryService = new DiaryServiceImpl();
@@ -53,8 +51,12 @@ public class DiaryController {
         }
     }
 
-    public List<Entry> getAllEntriesBy(String username){
-       return entryService.getAllEntries(username);
+    public String getAllEntriesBy(String username){
+        try {
+            return entryService.getAllEntries(username).toString();
+        } catch (DiaryAppException e){
+            return e.getMessage();
+        }
     }
 
     public void deleteEntry(int id){
