@@ -2,7 +2,6 @@ package services;
 
 import datas.models.Diary;
 import datas.models.Entry;
-import datas.repositories.DiaryNotFound;
 import datas.repositories.DiaryRepository;
 import datas.repositories.DiaryRepositoryImpl;
 import dtos.EntryCreationRequest;
@@ -12,6 +11,8 @@ import dtos.RegisterRequest;
 import exceptions.*;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Optional;
+
 public class DiaryServiceImpl implements DiaryService{
     private static DiaryRepository repository = new DiaryRepositoryImpl();
     private final EntryService entryService = new EntryServiceImpl();
@@ -20,40 +21,41 @@ public class DiaryServiceImpl implements DiaryService{
     @Override
     public Diary register(RegisterRequest registerRequest) {
         if(registerRequest.getUsername().isEmpty() || registerRequest.getPassword().isEmpty()) throw new EmptyStringException("Username or Password cannot be empty");
-
-        Diary diaryToFind = repository.findById(registerRequest.getUsername().toLowerCase());
-        if(diaryToFind != null) throw new UsernameTakenException("Username already taken");
-
-        return createDiary(registerRequest);
+        if(repository.findById(registerRequest.getUsername()) == null) {
+            return createDiary(registerRequest);
+        }
+        throw new UsernameTakenException("Username is taken");
     }
 
     @Override
     public void login(LoginRequest loginRequest) {
-        Diary diaryToFind = repository.findById(loginRequest.getUsername().toLowerCase());
-        if(diaryToFind == null) throw new UserNotFoundException("User not found");
+        Diary diaryToFind = findUser(loginRequest.getUsername());
+        validatePassword(diaryToFind.getPassword(), loginRequest.getPassword());
         diaryToFind.setLock(false);
         repository.save(diaryToFind);
     }
 
     @Override
     public void logout(String username) {
-       Diary diary = repository.findById(username);
-       if(diary == null){
-           throw new DiaryNotFound("Diary not found");
-       }
-       diary.setLock(true);
-       repository.save(diary);
+        Diary diaryToFind = findUser(username.toLowerCase());
+        diaryToFind.setLock(true);
+        repository.save(diaryToFind);
     }
+
+    @Override
+    public void changePassword(LoginRequest loginRequest) {
+        Diary diaryToChangePassword = findUser(loginRequest.getUsername());
+        diaryToChangePassword.setPassword(loginRequest.getPassword());
+    }
+
+
 
 
 
 
     @Override
     public Entry createEntry(EntryCreationRequest entryCreationRequest) {
-        Diary diary = repository.findById(entryCreationRequest.getUsername());
-        if(diary == null){
-            throw new UserNotFoundException("No user by that username");
-        }
+        findUser(entryCreationRequest.getUsername());
         return entryService.create(entryCreationRequest);
     }
 
@@ -68,21 +70,18 @@ public class DiaryServiceImpl implements DiaryService{
 
     @Override
     public void getAllEntries(String username) {
+        findUser(username);
         entryService.getAllEntries("username");
     }
 
     @Override
-    public void changePassword(LoginRequest loginRequest) {
-        Diary diaryToChangePassword = repository.findById(loginRequest.getUsername());
-        diaryToChangePassword.setPassword(loginRequest.getPassword());
-    }
-
-    @Override
     public Entry checkEntryById(String username, long id) {
-        if(repository.findById(username) == null){
-            throw new UserNotFoundException("User not found");
+        findUser(username);
+        Entry entry = entryService.checkEntryBy(id);
+        if(entry.getAuthor().equals(username)){
+            return entry;
         }
-        return entryService.checkEntryBy(id);
+        throw new NoSuchEntryException("No such entry");
     }
 
     @Override
@@ -93,9 +92,7 @@ public class DiaryServiceImpl implements DiaryService{
 
     @Override
     public void deleteEntry(String username, long id) {
-        if(repository.findById(username) == null){
-            throw new UserNotFoundException("User not found");
-        }
+        findUser(username);
         entryService.delete(entryService.checkEntryBy(id));
     }
 
@@ -110,6 +107,21 @@ public class DiaryServiceImpl implements DiaryService{
 
 
 
+
+    private void validatePassword(String diaryPassword, String userInputPassword) {
+        if(!diaryPassword.equals(userInputPassword)) throw new IncorrectPasswordException("Password is Incorrect");
+    }
+
+    @NotNull
+    private Diary findUser(String username) {
+        Diary diaryToFind = repository.findById(username.toLowerCase());
+        checkUserValidity(diaryToFind);
+        return diaryToFind;
+    }
+
+    private void checkUserValidity(Diary diaryToFind) {
+        if(diaryToFind == null) throw new UserNotFoundException("User not found");
+    }
 
     private Diary createDiary(RegisterRequest registerRequest) {
         Diary newDiary = new Diary(registerRequest.getUsername().toLowerCase(),  registerRequest.getPassword());
