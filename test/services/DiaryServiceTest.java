@@ -1,7 +1,6 @@
 package services;
 
 import datas.models.Diary;
-import datas.repositories.DiaryNotFound;
 import exceptions.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -50,7 +49,7 @@ public class DiaryServiceTest {
     @Test
     public void registerTwoTimesWithTheSameUsername_throwsUsernameIsTakenExceptionTest(){
         RegisterRequest registerRequest = new RegisterRequest();
-        registerRequest.setUsername("username");
+        registerRequest.setUsername("Username");
         registerRequest.setPassword("password");
         diaryService.register(registerRequest);
         registerRequest.setUsername("username");
@@ -104,6 +103,11 @@ public class DiaryServiceTest {
         registerRequest.setUsername("username");
         registerRequest.setPassword("password");
         Diary newDiary = diaryService.register(registerRequest);
+        LoginRequest loginRequest = new LoginRequest();
+        loginRequest.setUsername("usernaMe");
+        loginRequest.setPassword("password");
+        diaryService.login(loginRequest);
+        assertFalse(newDiary.isLocked());
         diaryService.logout("username");
         assertTrue(newDiary.isLocked());
     }
